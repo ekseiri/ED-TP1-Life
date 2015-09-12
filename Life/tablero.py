@@ -10,16 +10,15 @@ class Tablero:
         self._tablero = [[0] * self._col for self._row in range(self._row)]
 
     def llenar(self):
-        print (self.vivas, self._col, self._row)
         for i in range(self.vivas):
             posicion = (random.randint(0, self._row),
                         random.randint(0, self._col - 1))
 
-            while (self.tablero[posicion[0]][posicion[1]] is not None):
+            while (self._tablero[posicion[0]][posicion[1]] is not 0):
                 posicion = (random.randint(0, self._row),
                             random.randint(0, self._col - 1))
             else:
-                self.tablero[posicion[0]][posicion[1]] = 1
+                self._tablero[posicion[0]][posicion[1]] = 1
 
     @property
     def tablero(self):

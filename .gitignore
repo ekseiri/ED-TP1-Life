@@ -1,0 +1,9 @@
+Life/__pycache__/*
+tests/__pycache__/*
+tests/__pycache__/__init__.cpython-34.pyc
+
+tests/__pycache__/Comparador_tests.cpython-34.pyc
+
+tests/__pycache__/GeneradorPatrones_tests.cpython-34.pyc
+
+Life/main.sublime-workspace
