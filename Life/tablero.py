@@ -7,7 +7,7 @@ class Tablero:
         self.vivas = vivas
         self._col = col
         self._row = row
-        self._tablero = [[None] * self._col for self._row in range(self._row)]
+        self._tablero = [[0] * self._col for self._row in range(self._row)]
 
     def llenar(self):
         print (self.vivas, self._col, self._row)

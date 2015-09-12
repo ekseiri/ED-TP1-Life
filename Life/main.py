@@ -1,3 +1,6 @@
+import sys
+
+
 def menu_main():
     """Menu principal"""
 
@@ -5,15 +8,17 @@ def menu_main():
     print ('1.- Nuevo Juego')
     print ('2.- Cargar')
     print ('3.- Salir')
-    return raw_input('\n' + 'Seleccion: ')
+    return input('\n' + 'Seleccion: ')
 
 
 def menu_game_modes():
     """Menu de seleccion de modo de juego"""
 
+    print ('Modos de Juego')
     print ('1.- Normal')
     print ('2.- Vidas Estaticas')
-    print ('\n' + 'Seleccion: ')
+    print ('3.- Volver')
+    return input('\n' + 'Seleccion: ')
 
 
 def menu_load():
@@ -23,7 +28,26 @@ def menu_load():
 
 
 def main():
-    menu_main()
+    key = ''
+
+    while (key != '3'):
+        key = menu_main()
+
+        if (key == '1'):
+            modo = menu_game_modes()
+
+            if (modo == '1'):
+                """Modo Normal"""
+                pass
+            elif (modo == '2'):
+                """Modo Vidas Estaticas"""
+                pass
+
+        elif (key == '2'):
+            menu_load()
+        elif (key == '3'):
+            sys.exit()
+
 
 if __name__ == "__main__":
     main()
