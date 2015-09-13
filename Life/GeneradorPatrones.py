@@ -6,11 +6,16 @@ class GeneradorPatrones:
     @staticmethod
     def vecinos(tablero,x,y):
         vivos=0
-        for i in range(3):
-            for j in range(3):
-                if tablero[x-1+i][y-1+j]:
-                    vivos=+1
-        return vivos-1
+        try:
+            for i in range(3):
+                for j in range(3):
+                    if tablero[x-1+i][y-1+j]:
+                        vivos=+1
+        except Exception:
+            pass
+        if vivos>0:
+            return vivos-1
+        return vivos
 
     @staticmethod
     def nextStep(tablero):

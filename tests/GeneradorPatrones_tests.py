@@ -6,7 +6,7 @@ t = []
 
 
 def setUp():
-    t = Tablero(5, 5, 8)
+    t = Tablero(5, 5)
 
     t.tablero = [[1, 0, 0, 0, 0],
                  [0, 0, 1, 1, 0],
