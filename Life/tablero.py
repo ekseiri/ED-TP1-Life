@@ -3,14 +3,13 @@ import random
 
 class Tablero:
 
-    def __init__(self, col, row, vivas):
-        self.vivas = vivas
+    def __init__(self, col, row):
         self._col = col
         self._row = row
         self._tablero = [[0] * self._col for self._row in range(self._row)]
 
-    def llenar(self):
-        for i in range(self.vivas):
+    def fill(self, vivas):
+        for i in range(vivas):
             posicion = (random.randint(0, self._row),
                         random.randint(0, self._col - 1))
 
@@ -19,6 +18,9 @@ class Tablero:
                             random.randint(0, self._col - 1))
             else:
                 self._tablero[posicion[0]][posicion[1]] = 1
+
+    def manual_fill(self):
+        pass
 
     @property
     def tablero(self):
