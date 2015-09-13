@@ -1,7 +1,7 @@
 import random
 
 
-class Tablero:
+class Tablero (object):
 
     def __init__(self, col, row):
         self._col = col

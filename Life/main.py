@@ -37,6 +37,14 @@ def menu_pause():
     return input('\n' + 'Seleccion: ')
 
 
+def save_menu():
+    pass
+
+
+def load_menu():
+    pass
+
+
 def main():
     key = ''
 
@@ -46,40 +54,45 @@ def main():
         if (key == '1'):
             modo = menu_game_modes()
 
-            try:
-                if (modo == '1'):
-                    """Modo Normal"""
-                    tab_size = input('\n' + 'Tamaño del tablero: ')
-                    t = Tablero(tab_size, tab_size)
-                    random_place = input('\n' + 'Usar patron al azar? (s/n): ')
+            if (modo == '1'):
+                """Modo Normal"""
+                tab_size = int(input('\n' + 'Tamaño del tablero: '))
+                t = Tablero(tab_size, tab_size)
+                random_place = input('\n' + 'Usar patron al azar? (s/n): ')
 
-                    if (random_place == 's'):
-                        cell_alive = input('\n' + 'Cantidad de celdas vivas?')
-                        t.fill(cell_alive)
+                if (random_place == 's'):
+                    cell_alive = int(input('\n' + 'Cantidad '
+                                           'de celdas vivas? '))
+                    t.fill(cell_alive)
 
-                    else:
-                        t.manual_fill()
+                else:
+                    t.manual_fill()
 
-                elif (modo == '2'):
-                    """Modo Vidas Estaticas"""
-                    tab_size = input('\n' + 'Tamaño del tablero: ')
-                    cell_alive = input('\n' + 'Cantidad de celdas vivas?')
-                    t = Tablero(tab_size, tab_size)
+            elif (modo == '2'):
+                """Modo Vidas Estaticas"""
+                tab_size = int(input('\n' + 'Tamaño del tablero: '))
+                cell_alive = int(input('\n' + 'Cantidad de celdas vivas? '))
+                t = Tablero(tab_size, tab_size)
 
-                g = Game(int(modo), t)
-                g.run()
+            g = Game(int(modo), t)
+            g.running = True
 
-            except KeyboardInterrupt:
-                key = menu_pause()
+            while (g.running):
+                print ('running')
+                try:
+                    g.run()
 
-                if (key == '1'):
-                    pass
-                elif (key == '2'):
-                    pass
-                elif (key == '3'):
-                    pass
-                elif (key == '4'):
-                    pass
+                except KeyboardInterrupt:
+                    key = menu_pause()
+
+                    if (key == '1'):
+                        continue
+                    elif (key == '2'):
+                        save_menu()
+                    elif (key == '3'):
+                        load_menu()
+                    elif (key == '4'):
+                        g.running = False
 
         elif (key == '2'):
             menu_load()
