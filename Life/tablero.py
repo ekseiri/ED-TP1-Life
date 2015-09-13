@@ -29,3 +29,10 @@ class Tablero (object):
     @tablero.setter
     def tablero(self, t):
         self._tablero = t
+
+    def __repr__(self):
+        return '\n'.join(
+               [''.join(
+                ['{:2}'.format(item)
+                 .replace('0', '-').replace('1', '*') for item in row])
+                for row in self._tablero])

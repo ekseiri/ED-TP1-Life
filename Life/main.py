@@ -1,5 +1,4 @@
 import sys
-
 from tablero import Tablero
 from game import Game
 import pickle
