@@ -1,4 +1,4 @@
-class GeneradorPatrones:
+class GeneradorPatrones(object):
 
     def __init__(self):
         self.nada=0
@@ -9,12 +9,12 @@ class GeneradorPatrones:
         for i in range(3):
             for j in range(3):
                 try:
-                    if tablero[x-1+i][y-1+j]:
+                    if tablero[x-1+i][y-1+j]==1:
                         vivos=+1
                 except Exception:
                     pass
     
-        if tablero[x][y]:
+        if tablero[x][y]==1:
             return vivos-1
         return vivos
 
@@ -22,9 +22,15 @@ class GeneradorPatrones:
     def nextStep(tablero):
         for y in range(len(tablero)):
             for x in range(len(tablero[y])):
-                if tablero[x][y]:
-                    tablero[x][y] = self.vecinos(x,y)==2
+                if tablero[x][y]==1:
+                    if self.vecinos(x,y)==2:
+                        tablero[x][y] = 1
+                    else:
+                        tablero[x][y] = 0
                 else:
-                    tablero[x][y] = self.vecinos(x,y)==3
+                    if self.vecinos(x,y)==3:
+                        tablero[x][y] = 1 
+                    else:
+                        tablero[x][y] = 0
                 
                 
