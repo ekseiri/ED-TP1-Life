@@ -1,6 +1,8 @@
 import sys
+
 from tablero import Tablero
 from game import Game
+import pickle
 
 
 def menu_main():
@@ -23,11 +25,6 @@ def menu_game_modes():
     return input('\n' + 'Seleccion: ')
 
 
-def menu_load():
-    """Menu de load"""
-    pass
-
-
 def menu_pause():
     """Menu de save/load/continue/exit"""
     print ('1.- Continuar')
@@ -37,44 +34,60 @@ def menu_pause():
     return input('\n' + 'Seleccion: ')
 
 
-def save_menu():
-    pass
+def menu_save(game_obj):
+    path = input(
+        '\n' + 'Ingresar ruta completa y nombre de archivo a guardar: ')
+    with open(path, 'wb') as f:
+        pickle.dump(game_obj, f)
 
 
-def load_menu():
-    pass
+def menu_load():
+    path = input(
+        '\n' + 'Ingresar ruta completa y nombre de archivo a cargar: ')
+    g = pickle.load(open(path, 'rb'))
+    return g
 
 
 def main():
     key = ''
+    load_succesful = False
 
     while (key != '3'):
         key = menu_main()
 
-        if (key == '1'):
-            modo = menu_game_modes()
+        if (key == '2'):
+            g = menu_load()
+            load_succesful = True
+        elif (key == '3'):
+            sys.exit()
 
-            if (modo == '1'):
-                """Modo Normal"""
-                tab_size = int(input('\n' + 'Tamaño del tablero: '))
-                t = Tablero(tab_size, tab_size)
-                random_place = input('\n' + 'Usar patron al azar? (s/n): ')
+        if ((key == '1') or (load_succesful is True)):
+            if (load_succesful is False):
+                modo = menu_game_modes()
 
-                if (random_place == 's'):
-                    cell_alive = int(input('\n' + 'Cantidad '
-                                           'de celdas vivas? '))
-                    t.fill(cell_alive)
+                if (modo == '1'):
+                    """Modo Normal"""
+                    tab_size = int(input('\n' + 'Tamaño del tablero: '))
+                    t = Tablero(tab_size, tab_size)
+                    random_place = input('\n' + 'Usar patron al azar? (s/n): ')
 
-                else:
-                    t.manual_fill()
+                    if (random_place == 's'):
+                        cell_alive = int(input('\n' + 'Cantidad '
+                                               'de celdas vivas? '))
+                        t.fill(cell_alive)
 
-            elif (modo == '2'):
-                """Modo Vidas Estaticas"""
-                tab_size = int(input('\n' + 'Tamaño del tablero: '))
-                cell_alive = int(input('\n' + 'Cantidad de celdas vivas? '))
-                t = Tablero(tab_size, tab_size)
+                    else:
+                        t.manual_fill()
 
-            g = Game(int(modo), t)
+                elif (modo == '2'):
+                    """Modo Vidas Estaticas"""
+                    tab_size = int(input('\n' + 'Tamaño del tablero: '))
+                    cell_alive = int(
+                        input('\n' + 'Cantidad de celdas vivas? '))
+                    t = Tablero(tab_size, tab_size)
+
+                g = Game(int(modo), t)
+
             g.running = True
 
             while (g.running):
@@ -88,16 +101,11 @@ def main():
                     if (key == '1'):
                         continue
                     elif (key == '2'):
-                        save_menu()
+                        menu_save(g)
                     elif (key == '3'):
-                        load_menu()
+                        g = menu_load()
                     elif (key == '4'):
                         g.running = False
-
-        elif (key == '2'):
-            menu_load()
-        elif (key == '3'):
-            sys.exit()
 
 
 if __name__ == "__main__":

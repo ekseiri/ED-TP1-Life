@@ -15,7 +15,9 @@ class Game(object):
             self.still_life()
 
     def normal(self):
-        input('Game Loop')
+        print (self.tablero.tablero)
+        input('Normal Game Loop')
 
     def still_life(self):
-        pass
+        print (self.tablero.tablero)
+        input('Still Life Game Loop')
