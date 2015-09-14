@@ -1,7 +1,7 @@
 class GeneradorPatrones(object):
 
     def __init__(self):
-        self.nada=0
+        pass
 
     @staticmethod
     def vecinos(tablero,x,y):
@@ -13,24 +13,26 @@ class GeneradorPatrones(object):
                         vivos=+1
                 except Exception:
                     pass
-    
+        print(x,y)
         if tablero[x][y]==1:
             return vivos-1
         return vivos
 
     @staticmethod
     def nextStep(tablero):
+        modificado = list(tablero)
         for y in range(len(tablero)):
             for x in range(len(tablero[y])):
+                vecinos = self.vecinos(tablero,x,y)
                 if tablero[x][y]==1:
-                    if self.vecinos(x,y)==2:
-                        tablero[x][y] = 1
+                    if vecinos==2 or vecinos==3:
+                        modificado[x][y] = 1
                     else:
-                        tablero[x][y] = 0
+                        modificado[x][y] = 0
                 else:
-                    if self.vecinos(x,y)==3:
-                        tablero[x][y] = 1 
+                    if vecinos==3:
+                        modificado[x][y] = 1 
                     else:
-                        tablero[x][y] = 0
-                
+                        modificado[x][y] = 0
+        return modificado
                 
