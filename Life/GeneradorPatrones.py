@@ -26,22 +26,23 @@ class GeneradorPatrones(object):
             rangoColumnaf = columna + 1
 
         vivos = 0
-        print("Probando", fila, columna)
+        '''print("Probando", fila, columna)'''
         for i in range(rangoFilai, rangoFilaf + 1):
             for j in range(rangoColumnai, rangoColumnaf + 1):
-                print(i, j)
-                print("estado", tablero[i][j])
+                '''print(i, j)'''
+                '''print("estado", tablero[i][j])'''
                 if tablero[i][j] == 1:
                     vivos = vivos + 1
         if tablero[fila][columna] == 1:
-            print("vivos", vivos - 1)
+            '''print("vivos", vivos - 1)'''
             return vivos - 1
-        print("vivos", vivos)
+        '''print("vivos", vivos)'''
         return vivos
 
     @staticmethod
     def nextStep(tablero):
-        modificado = list(tablero)
+        print(tablero)
+        modificado = [list(row) for row in tablero]
 
         for fila in range(len(tablero)):
             for columna in range(len(tablero[0])):
@@ -56,4 +57,6 @@ class GeneradorPatrones(object):
                         modificado[fila][columna] = 1
                     else:
                         modificado[fila][columna] = 0
+        print(tablero)
+        print(modificado)
         return modificado
