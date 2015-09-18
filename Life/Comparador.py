@@ -1,4 +1,4 @@
-class Comparador:
+class Comparador(object):
 
 
     def __init__(self):
@@ -6,18 +6,14 @@ class Comparador:
         self.n=2
     
     def pushTablero(self, tablero):
-        self.tableros.append(tablero)
+        self.tableros.insert(0,tablero)
         if len(self.tableros)>self.n:
             self.tableros.pop()
 
     def comparar(self,actual):
-        i=0
-        for tab in self.tableros:
-            i=+1
+        for i, tab in enumerate(self.tableros):
             if actual==tab:
                 self.pushTablero(actual)
-                self.tableros.pop()
-                return i
+                return i+1
         self.pushTablero(actual)
-        self.tableros.pop()
         return False
