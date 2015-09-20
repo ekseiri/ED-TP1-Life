@@ -18,7 +18,7 @@ class Game(object):
             self.still_life()
 
     def clear(self):
-        if ('windows' not in str.lower(os.sys.platform)):
+        if ('win32' not in str.lower(os.sys.platform)):
             print('')
             os.system('clear')
         else:
@@ -32,8 +32,8 @@ class Game(object):
 
         while (self.running is True):
             print (self.tablero)
-            time.sleep(2)
-            c = comparador.comparar(self.tablero)
+            time.sleep(0.2)
+            c = comparador.comparar(self.tablero.tablero)
 
             if (c is not False):
                 if (c == 2):
