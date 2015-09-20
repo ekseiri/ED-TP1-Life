@@ -90,7 +90,6 @@ def main():
             g.running = True
 
             while (g.running):
-                print ('running')
                 try:
                     g.run()
 

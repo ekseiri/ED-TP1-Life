@@ -4,12 +4,13 @@ from Life.tablero import Tablero
 from Life.GeneradorPatrones import *
 from Life.Comparador import *
 
+
 def setup():
     global t1
     global t2
     global comp
 
-    comp = Comparador()
+    comp = Comparador(2)
     t1 = Tablero(5, 5)
     t2 = Tablero(5, 5)
 
@@ -18,7 +19,7 @@ def setup():
                    [0, 0, 1, 1, 0],
                    [0, 0, 0, 0, 0],
                    [0, 0, 0, 0, 0]]
- 
+
     t2._tablero = [[0, 0, 0, 0, 0],
                    [0, 1, 1, 1, 0],
                    [0, 0, 0, 0, 0],

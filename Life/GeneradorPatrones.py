@@ -41,7 +41,7 @@ class GeneradorPatrones(object):
 
     @staticmethod
     def nextStep(tablero):
-        print(tablero)
+        # print(tablero)
         modificado = [list(row) for row in tablero]
 
         for fila in range(len(tablero)):
@@ -57,6 +57,6 @@ class GeneradorPatrones(object):
                         modificado[fila][columna] = 1
                     else:
                         modificado[fila][columna] = 0
-        print(tablero)
-        print(modificado)
+        # print(tablero)
+        # print(modificado)
         return modificado
