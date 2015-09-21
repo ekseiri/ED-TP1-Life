@@ -59,8 +59,8 @@ class Game(object):
     def still_life(self):
         def coordenar(ancho, coordenadas):
             def calccoord(ancho, coord):
-                x = coord % ancho
-                y = coord // ancho
+                x = coord // ancho
+                y = coord % ancho
                 return (x, y)
 
             t = Tablero(ancho, ancho)
