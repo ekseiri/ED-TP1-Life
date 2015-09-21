@@ -1,3 +1,4 @@
+# coding: utf8
 class GeneradorPatrones(object):
 
     def __init__(self):

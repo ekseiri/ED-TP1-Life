@@ -1,3 +1,4 @@
+# coding: utf8
 class Comparador(object):
 
     def __init__(self, cantidad):

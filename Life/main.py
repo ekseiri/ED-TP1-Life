@@ -1,3 +1,4 @@
+# coding: utf8
 import sys
 from tablero import Tablero
 from game import Game
@@ -87,8 +88,7 @@ def main():
                         input('\n' + 'Cantidad de celdas vivas? '))
                     t = Tablero(tab_size, tab_size)
 
-                    g = Game(int(modo), t,cell_alive)
-                
+                    g = Game(int(modo), t, cell_alive)
 
             g.running = True
 

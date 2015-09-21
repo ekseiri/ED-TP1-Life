@@ -1,3 +1,4 @@
+# coding: utf8
 from nose import with_setup
 from nose.tools import *
 from Life.GeneradorPatrones import *

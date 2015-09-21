@@ -1,3 +1,4 @@
+# coding: utf8
 import time
 from GeneradorPatrones import *
 from Comparador import Comparador
@@ -52,7 +53,7 @@ class Game(object):
                     self.running = False
             else:
                 self.tablero.tablero = GeneradorPatrones.nextStep(
-                                       self.tablero.tablero)
+                    self.tablero.tablero)
             self.clear()
 
     def still_life(self):
@@ -60,11 +61,11 @@ class Game(object):
             def calccoord(ancho, coord):
                 x = coord % ancho
                 y = coord // ancho
-                return (x,y)
+                return (x, y)
 
             t = Tablero(ancho, ancho)
             for c in coordenadas:
-                x,y = calccoord(ancho, c)
+                x, y = calccoord(ancho, c)
                 t.tablero[x][y] = 1
             return t
 
@@ -73,7 +74,7 @@ class Game(object):
         self.clear()
 
         print("Combinaciones: ")
-        print(math.factorial(tam**2)/math.factorial(tam**2-self.vidas))
+        print(math.factorial(tam**2) / math.factorial(tam**2 - self.vidas))
         print("\n" + "Trabajando..." + "\n")
 
         for c in combinations(range(tam**2), self.vidas):
@@ -81,13 +82,8 @@ class Game(object):
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
-                print(c)
+                print(c + t.tablero)
                 self.work.append(c)
+                input("\n")
         input("\n" + "Trabajo Completado")
         self.running = False
-
-
-
-
-
-
