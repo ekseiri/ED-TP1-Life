@@ -27,7 +27,7 @@ def combinations(iterable, r):
 # through all combinations
 if __name__ == '__main__' :
 	cantidad=0
-	for x in combinations(range(25), 5):
+	for x in combinations(range(16), 4):
 	    cantidad+=1
 	    print (x)
 	print("\nCantidad total de combinaciones: ",cantidad)

@@ -2,14 +2,17 @@ import time
 from GeneradorPatrones import *
 from Comparador import Comparador
 import os
+from tablero import Tablero
+from combination import *
 
 
 class Game(object):
 
-    def __init__(self, mode, tablero):
+    def __init__(self, mode, tablero, vidas=2):
         self.mode = mode
         self.tablero = tablero
         self.running = False
+        self.vidas = vidas
 
     def run(self):
         if (self.mode == 1):
@@ -51,5 +54,33 @@ class Game(object):
             self.clear()
 
     def still_life(self):
-        input('Still Life Game Loop')
-        print (self.tablero)
+        def coordenar(ancho, coordenadas):
+            def calccoord(ancho, coord):
+                x = coord % ancho
+                y = coord // ancho
+                return (x,y)
+
+            t = Tablero(ancho, ancho)
+            for c in coordenadas:
+                x,y = calccoord(ancho, c)
+                t.tablero[x][y] = 1
+            return t
+
+        tam = len(self.tablero.tablero)
+
+        self.clear()
+
+        for c in combinations(range(tam**2), self.vidas):
+            t = coordenar(tam, c)
+            comp = Comparador(1)
+            comp.pushTablero(t.tablero)
+            if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
+                print(c)
+
+        self.running = False
+
+
+
+
+
+
