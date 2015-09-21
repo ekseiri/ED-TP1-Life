@@ -4,6 +4,7 @@ from Comparador import Comparador
 import os
 from tablero import Tablero
 from combination import *
+import math
 
 
 class Game(object):
@@ -13,6 +14,7 @@ class Game(object):
         self.tablero = tablero
         self.running = False
         self.vidas = vidas
+        self.work = []
 
     def run(self):
         if (self.mode == 1):
@@ -70,13 +72,20 @@ class Game(object):
 
         self.clear()
 
+        print("Combinaciones: ")
+        print(math.factorial(tam)/math.factorial(tam-self.vidas))
+        print("Trabajando...")
+
         for c in combinations(range(tam**2), self.vidas):
             t = coordenar(tam, c)
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
                 print(c)
+                self.work.append(c)
 
+        for x in self.work:
+            print(x)
         self.running = False
 
 
