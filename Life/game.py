@@ -16,6 +16,8 @@ class Game(object):
         self.running = False
         self.vidas = vidas
         self.work = []
+        self.stills = 0
+        self.combs = 0
 
     def run(self):
         if (self.mode == 1):
@@ -70,22 +72,23 @@ class Game(object):
             return t
 
         tam = len(self.tablero.tablero)
-
+        self.combs = math.factorial(tam**2) / (math.factorial(tam**2 - self.vidas) * math.factorial(self.vidas))
         self.clear()
 
-        print("Combinaciones: ")
-        print(math.factorial(tam**2) / math.factorial(tam**2 - self.vidas))
+        print("Combinaciones: " + repr(self.combs))
         print("\n" + "Trabajando..." + "\n")
-
-        for c in combinations(range(tam**2), self.vidas):
+        for i,c in enumerate(combinations(range(tam**2), self.vidas)):
             t = coordenar(tam, c)
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
+                self.stills += 1
                 print(c)
                 print("\n")
                 print(t)
                 self.work.append(c)
-                input("\n")
-        input("\n" + "Trabajo Completado")
+                print("\n" + "Progreso: %" + ("%.2f" % ((i / self.combs) * 100)))
+                # input("\n")
+        print("\n" + "Trabajo Completado")
+        input("Encontrados: " + repr(self.stills))
         self.running = False
