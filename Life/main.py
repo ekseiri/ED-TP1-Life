@@ -78,6 +78,8 @@ def main():
                     else:
                         t.manual_fill()
 
+                    g = Game(int(modo), t)
+
                 elif (modo == '2'):
                     """Modo Vidas Estaticas"""
                     tab_size = int(input('\n' + 'Tamaño del tablero: '))
@@ -85,7 +87,8 @@ def main():
                         input('\n' + 'Cantidad de celdas vivas? '))
                     t = Tablero(tab_size, tab_size)
 
-                g = Game(int(modo), t)
+                    g = Game(int(modo), t,cell_alive)
+                
 
             g.running = True
 
