@@ -8,3 +8,4 @@ tests/__pycache__/GeneradorPatrones_tests.cpython-34.pyc
 
 Life/main.sublime-workspace
 *.pyc
+*.swp

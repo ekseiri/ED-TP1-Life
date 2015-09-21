@@ -31,8 +31,11 @@ class Tablero (object):
         self._tablero = t
 
     def __repr__(self):
+        CEROS = '\033[95m'
+        UNOS = '\033[93m'
+        TERM = '\033[0m'
         return '\n'.join(
                [''.join(
                 ['{:2}'.format(item)
-                 .replace('0', '-').replace('1', '*') for item in row])
+                 .replace('0', CEROS + '-' + TERM).replace('1', UNOS + '*' + TERM) for item in row])
                 for row in self._tablero])
