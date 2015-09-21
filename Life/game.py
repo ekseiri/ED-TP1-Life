@@ -74,7 +74,7 @@ class Game(object):
 
         print("Combinaciones: ")
         print(math.factorial(tam)/math.factorial(tam-self.vidas))
-        print("Trabajando...")
+        print("\n" + "Trabajando..." + "\n")
 
         for c in combinations(range(tam**2), self.vidas):
             t = coordenar(tam, c)
@@ -83,9 +83,7 @@ class Game(object):
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
                 print(c)
                 self.work.append(c)
-
-        for x in self.work:
-            print(x)
+        input("\n" + "Trabajo Completado")
         self.running = False
 
 
