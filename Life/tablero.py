@@ -1,6 +1,7 @@
 # coding: utf8
 import random
 import os
+from utils import *
 
 
 class Tablero (object):
@@ -22,7 +23,29 @@ class Tablero (object):
                 self._tablero[posicion[0]][posicion[1]] = 1
 
     def manual_fill(self):
-        pass
+        while True:
+            Tools.clear()
+            print(self)
+            try:
+
+                key = int(input("\n" + "Ingrese la celda a cambiar" + "\n"))
+
+                # if ((key > 0) and (key <= (self._col * self._row))):
+                x, y = Tools.calccoord(self._col, key)
+                if self.tablero[x][y] == 1:
+                    self.tablero[x][y] = 0
+                else:
+                    self.tablero[x][y] = 1
+
+            except KeyboardInterrupt:
+                break
+            except ValueError:
+                print("Error: Debe ingresar un entero")
+                input("")
+            except IndexError:
+                print("Error: Numero de celda invalido " +
+                      "(0:" + repr(self._col ** 2 - 1) + ")")
+                input("")
 
     @property
     def tablero(self):

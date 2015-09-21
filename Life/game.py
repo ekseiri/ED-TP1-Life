@@ -2,7 +2,7 @@
 import time
 from GeneradorPatrones import *
 from Comparador import Comparador
-import os
+from utils import Tools
 from tablero import Tablero
 from combination import *
 import math
@@ -25,16 +25,8 @@ class Game(object):
         elif (self.mode == 2):
             self.still_life()
 
-    def clear(self):
-        if ('win32' not in str.lower(os.sys.platform)):
-            print('')
-            os.system('clear')
-        else:
-            print('')
-            os.system('cls')
-
     def normal(self):
-        self.clear()
+        Tools.clear()
 
         comparador = Comparador(2)
 
@@ -56,28 +48,26 @@ class Game(object):
             else:
                 self.tablero.tablero = GeneradorPatrones.nextStep(
                     self.tablero.tablero)
-            self.clear()
+            Tools.clear()
 
     def still_life(self):
         def coordenar(ancho, coordenadas):
-            def calccoord(ancho, coord):
-                x = coord // ancho
-                y = coord % ancho
-                return (x, y)
+            pass
 
             t = Tablero(ancho, ancho)
             for c in coordenadas:
-                x, y = calccoord(ancho, c)
+                x, y = Tools.calccoord(ancho, c)
                 t.tablero[x][y] = 1
             return t
 
         tam = len(self.tablero.tablero)
-        self.combs = math.factorial(tam**2) / (math.factorial(tam**2 - self.vidas) * math.factorial(self.vidas))
-        self.clear()
+        self.combs = math.factorial(
+            tam**2) / (math.factorial(tam**2 - self.vidas) * math.factorial(self.vidas))
+        Tools.clear()
 
         print("Combinaciones: " + repr(self.combs))
         print("\n" + "Trabajando..." + "\n")
-        for i,c in enumerate(combinations(range(tam**2), self.vidas)):
+        for i, c in enumerate(combinations(range(tam**2), self.vidas)):
             t = coordenar(tam, c)
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
@@ -87,7 +77,8 @@ class Game(object):
                 print("\n")
                 print(t)
                 self.work.append(c)
-                print("\n" + "Progreso: %" + ("%.2f" % ((i / self.combs) * 100)))
+                print(
+                    "\n" + "Progreso: %" + ("%.2f" % ((i / self.combs) * 100)))
                 # input("\n")
         print("\n" + "Trabajo Completado")
         input("Encontrados: " + repr(self.stills))
