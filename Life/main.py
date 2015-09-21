@@ -8,29 +8,30 @@ import pickle
 def menu_main():
     """Menu principal"""
 
-    print ('Menu')
-    print ('1.- Nuevo Juego')
-    print ('2.- Cargar')
-    print ('3.- Salir')
-    return input('\n' + 'Seleccion: ')
+    print('Menu')
+    print('1.- Nuevo Juego')
+    print('2.- Cargar')
+    print('3.- Salir')
+
+    return (input('\n' + 'Seleccion: '))
 
 
 def menu_game_modes():
     """Menu de seleccion de modo de juego"""
 
-    print ('Modos de Juego')
-    print ('1.- Normal')
-    print ('2.- Vidas Estaticas')
-    print ('3.- Volver')
+    print('Modos de Juego')
+    print('1.- Normal')
+    print('2.- Vidas Estaticas')
+    print('3.- Volver')
     return input('\n' + 'Seleccion: ')
 
 
 def menu_pause():
     """Menu de save/load/continue/exit"""
-    print ('1.- Continuar')
-    print ('2.- Guardar Juego')
-    print ('3.- Cargar Juego')
-    print ('4.- Volver al menu principal')
+    print('1.- Continuar')
+    print('2.- Guardar Juego')
+    print('3.- Cargar Juego')
+    print('4.- Volver al menu principal')
     return input('\n' + 'Seleccion: ')
 
 

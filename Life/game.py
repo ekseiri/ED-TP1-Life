@@ -37,7 +37,7 @@ class Game(object):
         comparador = Comparador(2)
 
         while (self.running is True):
-            print (self.tablero)
+            print(self.tablero)
             time.sleep(0.2)
             c = comparador.comparar(self.tablero.tablero)
 
@@ -82,7 +82,9 @@ class Game(object):
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
-                print(c + t.tablero)
+                print(c)
+                print("\n")
+                print(t)
                 self.work.append(c)
                 input("\n")
         input("\n" + "Trabajo Completado")
