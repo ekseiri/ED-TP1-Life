@@ -56,20 +56,32 @@ class Tablero (object):
         self._tablero = t
 
     def __repr__(self):
+        header = [i for i in range(0, self._col)]
+        headString = ''.join(['{:2}'.format(item) for item in header])
+
         if ('win32' not in str.lower(os.sys.platform)):
             CEROS = '\033[95m'
             UNOS = '\033[93m'
             TERM = '\033[0m'
-            return '\n'.join(
-                   [''.join(
+            BOLD = '\033[1m'
+
+            headString = BOLD + '  ' + headString + TERM + '\n'
+
+            tabString = '\n'.join(
+                [BOLD + '{:2}'.format(i) + TERM + ''.join(
                     ['{:2}'.format(item)
                      .replace('0', CEROS + '-' + TERM).replace
                      ('1', UNOS + '*' + TERM) for item in row])
-                    for row in self._tablero])
+                    for i, row in enumerate(self._tablero)])
+
         else:
-            return '\n'.join(
-                   [''.join(
+            headString = '  ' + headString + '\n'
+
+            tabString = '\n'.join(
+                ['{:2}'.format(i) + ''.join(
                     ['{:2}'.format(item)
                      .replace('0', '-').replace
                      ('1', '*') for item in row])
-                    for row in self._tablero])
+                    for i, row in enumerate(self._tablero)])
+
+        return headString + tabString
