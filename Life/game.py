@@ -73,7 +73,7 @@ class Game(object):
         self.clear()
 
         print("Combinaciones: ")
-        print(math.factorial(tam)/math.factorial(tam-self.vidas))
+        print(math.factorial(tam**2)/math.factorial(tam**2-self.vidas))
         print("\n" + "Trabajando..." + "\n")
 
         for c in combinations(range(tam**2), self.vidas):
