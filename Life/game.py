@@ -18,6 +18,8 @@ class Game(object):
         self.work = []
         self.stills = 0
         self.combs = 0
+        self.iter = 0
+        self.combMatrix = []
 
     def run(self):
         if (self.mode == 1):
@@ -67,18 +69,24 @@ class Game(object):
 
         print("Combinaciones: " + repr(self.combs))
         print("\n" + "Trabajando..." + "\n")
-        for i, c in enumerate(combinations(range(tam**2), self.vidas)):
-            t = coordenar(tam, c)
+
+        if len(self.combMatrix) == 0:
+            self.combMatrix = list(combinations(range(tam**2), self.vidas))
+
+        i = self.iter
+        for c in range(i , len(self.combMatrix)):
+            self.iter = self.iter + 1
+            t = coordenar(tam, self.combMatrix[c])
             comp = Comparador(1)
             comp.pushTablero(t.tablero)
             if comp.comparar(GeneradorPatrones.nextStep(t.tablero)) == 1:
                 self.stills += 1
-                print(c)
+                print(self.combMatrix[c])
                 print("\n")
                 print(t)
-                self.work.append(c)
+                self.work.append(self.combMatrix[c])
                 print(
-                    "\n" + "Progreso: %" + ("%.2f" % ((i / self.combs) * 100)))
+                    "\n" + "Progreso: %" + ("%.2f" % ((self.iter / self.combs) * 100)))
                 # input("\n")
         print("\n" + "Trabajo Completado, presionar Enter " +
               "para volver al menu principal")
