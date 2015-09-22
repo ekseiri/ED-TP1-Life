@@ -46,10 +46,11 @@ def menu_pause():
     print('1.- Continuar')
     print('2.- Guardar Juego')
     print('3.- Cargar Juego')
-    print('4.- Volver al menu principal')
+    print('4.- Modificar el tablero')
+    print('5.- Volver al menu principal')
     select = input('\n' + 'Seleccion: ')
 
-    while (select not in ['1', '2', '3', '4']):
+    while (select not in ['1', '2', '3', '4', '5']):
         select = input('Opcion invalida, ingresar nuevamente: ')
 
     return select
@@ -147,6 +148,8 @@ def main():
                         elif (key == '3'):
                             g = menu_load()
                         elif (key == '4'):
+                            g.tablero.manual_fill()
+                        elif (key == '5'):
                             g.running = False
 
 

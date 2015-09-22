@@ -34,7 +34,7 @@ class Game(object):
 
         while (self.running is True):
             print(self.tablero)
-            time.sleep(0.2)
+            #time.sleep(0.5)
             c = comparador.comparar(self.tablero.tablero)
 
             if (c is not False):
@@ -50,6 +50,7 @@ class Game(object):
             else:
                 self.tablero.tablero = GeneradorPatrones.nextStep(
                     self.tablero.tablero)
+                input('Presionar Enter para continuar')
             Tools.clear()
 
     def still_life(self):
