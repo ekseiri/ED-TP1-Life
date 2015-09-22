@@ -80,6 +80,7 @@ class Game(object):
                 print(
                     "\n" + "Progreso: %" + ("%.2f" % ((i / self.combs) * 100)))
                 # input("\n")
-        print("\n" + "Trabajo Completado")
+        print("\n" + "Trabajo Completado, presionar Enter " +
+              "para volver al menu principal")
         input("Encontrados: " + repr(self.stills))
         self.running = False
