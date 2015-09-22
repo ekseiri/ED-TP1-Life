@@ -56,41 +56,35 @@ def menu_pause():
 
 
 def menu_save(game_obj):
-    victory = False
+    success = False
 
-    while not victory:
+    while not success:
         try:
             path = input(
-                '\n' + 'Ingresar ruta completa y nombre de archivo a guardar: ')
+                '\n' + 'Ingresar ruta completa y ' +
+                'nombre del archivo a guardar: ')
             with open(path, 'wb') as f:
                 pickle.dump(game_obj, f)
-            victory = True
+            success = True
+
         except IOError:
             traceback.print_exc()
-        except OSError as e:
-            print ('Error: ' + e.errno)
-            print (e.strerror)
-            print (e.filename)
-        except FileNotFoundError as e:
-            print ('Error: ' + e.errno)
-            print (e.strerror)
-            print (e.filename)
+
 
 def menu_load():
-    victory = False
+    success = False
 
-    while not victory:
+    while not success:
         try:
             path = input(
-                '\n' + 'Ingresar ruta completa y nombre de archivo a cargar: ')
+                '\n' + 'Ingresar ruta completa y ' +
+                'nombre del archivo a cargar: ')
             g = pickle.load(open(path, 'rb'))
-            victory = True
+            success = True
+
         except IOError:
             traceback.print_exc()
-        except OSError as e:
-            print ('Error: ' + e.errno)
-            print (e.strerror)
-            print (e.filename)
+
     return g
 
 
@@ -136,23 +130,24 @@ def main():
 
                     g = Game(int(modo), t, cell_alive)
 
-            g.running = True
+            if (modo != '3'):
+                g.running = True
 
-            while (g.running):
-                try:
-                    g.run()
+                while (g.running):
+                    try:
+                        g.run()
 
-                except KeyboardInterrupt:
-                    key = menu_pause()
+                    except KeyboardInterrupt:
+                        key = menu_pause()
 
-                    if (key == '1'):
-                        continue
-                    elif (key == '2'):
-                        menu_save(g)
-                    elif (key == '3'):
-                        g = menu_load()
-                    elif (key == '4'):
-                        g.running = False
+                        if (key == '1'):
+                            continue
+                        elif (key == '2'):
+                            menu_save(g)
+                        elif (key == '3'):
+                            g = menu_load()
+                        elif (key == '4'):
+                            g.running = False
 
 
 if __name__ == "__main__":

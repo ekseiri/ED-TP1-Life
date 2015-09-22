@@ -28,7 +28,8 @@ class Tablero (object):
             print(self)
             try:
 
-                key = int(input("\n" + "Ingrese la celda a cambiar" + "\n"))
+                key = int(input("\n" + "Ingrese la celda a cambiar, " +
+                                "CTRL+C para iniciar" + "\n"))
 
                 # if ((key > 0) and (key <= (self._col * self._row))):
                 x, y = Tools.calccoord(self._col, key)
