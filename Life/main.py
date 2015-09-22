@@ -3,49 +3,94 @@ import sys
 from tablero import Tablero
 from game import Game
 import pickle
+import traceback
 
 
 def menu_main():
     """Menu principal"""
+    select = ''
 
     print('Menu')
     print('1.- Nuevo Juego')
     print('2.- Cargar')
     print('3.- Salir')
+    select = input('\n' + 'Seleccion: ')
 
-    return (input('\n' + 'Seleccion: '))
+    while (select not in ['1', '2', '3']):
+        select = input('Opcion invalida, ingresar nuevamente: ')
+
+    return select
 
 
 def menu_game_modes():
     """Menu de seleccion de modo de juego"""
+    select = ''
 
     print('Modos de Juego')
     print('1.- Normal')
     print('2.- Vidas Estaticas')
     print('3.- Volver')
-    return input('\n' + 'Seleccion: ')
+    select = input('\n' + 'Seleccion: ')
+
+    while (select not in ['1', '2', '3']):
+        select = input('Opcion invalida, ingresar nuevamente: ')
+
+    return select
 
 
 def menu_pause():
     """Menu de save/load/continue/exit"""
+    select = ''
+
+    print('Juego Pausado')
     print('1.- Continuar')
     print('2.- Guardar Juego')
     print('3.- Cargar Juego')
     print('4.- Volver al menu principal')
-    return input('\n' + 'Seleccion: ')
+    select = input('\n' + 'Seleccion: ')
+
+    while (select not in ['1', '2', '3', '4']):
+        select = input('Opcion invalida, ingresar nuevamente: ')
+
+    return select
 
 
 def menu_save(game_obj):
-    path = input(
-        '\n' + 'Ingresar ruta completa y nombre de archivo a guardar: ')
-    with open(path, 'wb') as f:
-        pickle.dump(game_obj, f)
+    victory = False
 
+    while not victory:
+        try:
+            path = input(
+                '\n' + 'Ingresar ruta completa y nombre de archivo a guardar: ')
+            with open(path, 'wb') as f:
+                pickle.dump(game_obj, f)
+            victory = True
+        except IOError:
+            traceback.print_exc()
+        except OSError as e:
+            print ('Error: ' + e.errno)
+            print (e.strerror)
+            print (e.filename)
+        except FileNotFoundError as e:
+            print ('Error: ' + e.errno)
+            print (e.strerror)
+            print (e.filename)
 
 def menu_load():
-    path = input(
-        '\n' + 'Ingresar ruta completa y nombre de archivo a cargar: ')
-    g = pickle.load(open(path, 'rb'))
+    victory = False
+
+    while not victory:
+        try:
+            path = input(
+                '\n' + 'Ingresar ruta completa y nombre de archivo a cargar: ')
+            g = pickle.load(open(path, 'rb'))
+            victory = True
+        except IOError:
+            traceback.print_exc()
+        except OSError as e:
+            print ('Error: ' + e.errno)
+            print (e.strerror)
+            print (e.filename)
     return g
 
 
@@ -111,4 +156,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (KeyboardInterrupt, SystemExit):
+        print ('\n')
